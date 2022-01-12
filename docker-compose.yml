@@ -16,7 +16,6 @@ services:
       - db_mongo
       - db_postgres
       - db_redis
-      - db_elasticsearch
     ulimits:
       nproc: 10000
       nofile:
@@ -106,19 +105,6 @@ services:
       - ./docker/redis/redis_server.conf:/usr/local/etc/redis/redis_replica.conf
       - ./docker/volumes/redis:/data
     command: redis-server /etc/redis/redis.conf --port 6579
-
-  db_elasticsearch:
-    container_name: db_elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.2
-    restart: unless-stopped
-    environment:
-      - discovery.type=single-node
-    ports:
-      - 9200:9200
-      - 9300:9300
-    volumes:
-      - ./docker/volumes/elasticsearch:/elasticsearch/dat
-      - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
 
   db_mongo:
     container_name: db_mongo
