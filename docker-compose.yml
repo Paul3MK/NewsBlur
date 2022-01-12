@@ -70,7 +70,6 @@ services:
       - db_postgres
       - db_redis
       - db_mongo
-      - db_elasticsearch
     environment: 
       - DOCKERBUILD=True
     volumes:
@@ -138,7 +137,6 @@ services:
       - imageproxy
       - db_redis
       - db_postgres
-      - db_elasticsearch
       - db_mongo
     ports:
       - 80:80
